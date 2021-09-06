@@ -46,6 +46,7 @@ RUN \
 		poppler-utils \
 		nodejs \
 		nodejs-npm \
+		npm \
 		python2 \
 		python3 \
 		lua \
