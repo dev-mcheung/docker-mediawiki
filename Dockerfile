@@ -119,13 +119,10 @@ RUN \
 		chown -R abc:abc $MEDIAWIKI_STORAGE_PATH && \
 	# install npm
 	echo "**** install npm ****" && \
-		cd $PARSOID_HOME && \
-		npm install && \
-# cleanup# install npm
-	echo "**** install npm ****" && \
 		mkdir -p $PARSOID_HOME &&\
 		cd $PARSOID_HOME && \
 		npm install && \
+# cleanup# install npm
 	echo "**** cleanup ****" && \
 		apk del --purge \
 			build-dependencies && \
