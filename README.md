@@ -1,6 +1,6 @@
 README
 # Important
-This has been forked from d8sychain (https://github.com/d8sychain/docker-mediawiki) for testing purposes. Please do not use this repo as it can issues.
+This has been forked from [d8sychain](https://github.com/d8sychain/docker-mediawiki) for testing purposes. Please do not use this repo as there can be issues/bugs.
 
 # Docker MediaWiki
 

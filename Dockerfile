@@ -1,4 +1,4 @@
-FROM lsiobase/nginx:3.10
+FROM lsiobase/nginx:3.12
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -193,4 +193,4 @@ RUN \
 # build image - end
 # ports and volumes
 EXPOSE 80
-VOLUME /config /assets
+VOLUME /config /assetsdocker build from github
