@@ -3,8 +3,8 @@ README
 This has been forked from [d8sychain](https://github.com/d8sychain/docker-mediawiki) for testing purposes. Please do not use this repo as there can be issues/bugs.
 
 # Changes from d8sychain's docker
-- Removed Parsoid setup: already bundled with mediawiki 1.53
-- Removed VisualEditor: Also bundled with mediawiki 1.53
+- Removed Parsoid setup: already bundled with mediawiki 1.35
+- Removed VisualEditor: Also bundled with mediawiki 1.35
 
 # Docker MediaWiki
 
