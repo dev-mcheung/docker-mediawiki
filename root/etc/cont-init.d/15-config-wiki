@@ -3,8 +3,8 @@
 # make our folders
 mkdir -p \
 	$MEDIAWIKI_PATH \
-	/config/{log/mediawiki,log/parsoid,log/lua,nginx,php,parsoid} \
-	/run/s6/services/parsoid \
+	/config/{log/mediawiki,log/lua,nginx,php} \
+#	/run/s6/services/parsoid \
 	/assets/resources
 
 # copy mediawiki files
