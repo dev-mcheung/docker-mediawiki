@@ -54,6 +54,9 @@ RUN \
 	echo "**** make php7-fpm unix socket path ****" && \
 		mkdir -p /var/run/php7-fpm/ && \
 		chown abc:abc /var/run/php7-fpm/ && \  
+# install npm
+	echo "**** install npm ****" && \
+		npm install && \
 # mediawiki core, includes bundled extentions
 	echo "**** download mediawiki ****" && \
 		 mkdir -p $MEDIAWIKI_STORAGE_PATH && \
