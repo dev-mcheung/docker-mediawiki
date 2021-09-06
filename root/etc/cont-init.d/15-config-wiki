@@ -47,12 +47,12 @@ echo 'copying config files...'
 	cp /defaults/php/php-fpm.conf /config/php/www2.conf && \
 	echo 'default php-fpm.conf copied'
 # parsoid	
-[[ ! -f /config/parsoid/config.yaml ]] && \
-	cp /defaults/parsoid/config.yaml /config/parsoid/config.yaml && \
-	echo 'default parsoid config.yaml copied'
-[[ ! -f /run/s6/services/parsoid/config.yaml ]] && \
-	cp /config/parsoid/config.yaml 	$PARSOID_HOME/config.yaml && \
-	echo 'parsoid config.yaml copied'
+#[[ ! -f /config/parsoid/config.yaml ]] && \
+#	cp /defaults/parsoid/config.yaml /config/parsoid/config.yaml && \
+#	echo 'default parsoid config.yaml copied'
+#[[ ! -f /run/s6/services/parsoid/config.yaml ]] && \
+#	cp /config/parsoid/config.yaml 	$PARSOID_HOME/config.yaml && \
+#	echo 'parsoid config.yaml copied'
 
 # set set execute permissions for mediawiki extentions
 chmod a+x $MEDIAWIKI_PATH/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize
