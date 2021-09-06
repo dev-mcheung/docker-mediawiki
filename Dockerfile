@@ -121,7 +121,11 @@ RUN \
 	echo "**** install npm ****" && \
 		cd $PARSOID_HOME && \
 		npm install && \
-# cleanup
+# cleanup# install npm
+	echo "**** install npm ****" && \
+		mkdir -p $PARSOID_HOME &&\
+		cd $PARSOID_HOME && \
+		npm install && \
 	echo "**** cleanup ****" && \
 		apk del --purge \
 			build-dependencies && \
