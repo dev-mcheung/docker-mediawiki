@@ -5,6 +5,7 @@ ARG VERSION
 LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="devmcheung"
 # environment settings
+ENV PARSOID_HOME=/var/lib/parsoid
 ENV APK_UPGRADE=false
 ENV MEDIAWIKI_VERSION_MAJOR=1
 ENV MEDIAWIKI_VERSION_MINOR=35
@@ -54,9 +55,6 @@ RUN \
 	echo "**** make php7-fpm unix socket path ****" && \
 		mkdir -p /var/run/php7-fpm/ && \
 		chown abc:abc /var/run/php7-fpm/ && \  
-# install npm
-	echo "**** install npm ****" && \
-		npm install && \
 # mediawiki core, includes bundled extentions
 	echo "**** download mediawiki ****" && \
 		 mkdir -p $MEDIAWIKI_STORAGE_PATH && \
@@ -119,6 +117,10 @@ RUN \
 			$MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
 		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard/.git* && \
 		chown -R abc:abc $MEDIAWIKI_STORAGE_PATH && \
+	# install npm
+	echo "**** install npm ****" && \
+		cd $PARSOID_HOME && \
+		npm install && \
 # cleanup
 	echo "**** cleanup ****" && \
 		apk del --purge \
