@@ -2,6 +2,10 @@ README
 # Important
 This has been forked from [d8sychain](https://github.com/d8sychain/docker-mediawiki) for testing purposes. Please do not use this repo as there can be issues/bugs.
 
+# Changes from d8sychain's docker
+- Removed Parsoid setup: already bundled with mediawiki 1.53
+- Removed VisualEditor: Also bundled with mediawiki 1.53
+
 # Docker MediaWiki
 
 [![DockerHub Pulls](https://img.shields.io/docker/pulls/d8sychain/mediawiki.svg)](https://hub.docker.com/r/d8sychain/mediawiki/) [![DockerHub Stars](https://img.shields.io/docker/stars/d8sychain/mediawiki.svg)](https://hub.docker.com/r/d8sychain/mediawiki/) [![GitHub Stars](https://img.shields.io/github/stars/d8sychain/docker-mediawiki.svg?label=github%20stars)](https://github.com/d8sychain/docker-mediawiki) [![GitHub Forks](https://img.shields.io/github/forks/d8sychain/docker-mediawiki.svg?label=github%20forks)](https://github.com/d8sychain/docker-mediawiki) [![GitHub License](https://img.shields.io/github/license/d8sychain/docker-mediawiki.svg)](https://github.com/d8sychain/docker-mediawiki)
