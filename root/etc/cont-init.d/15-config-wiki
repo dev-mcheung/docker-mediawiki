@@ -4,7 +4,6 @@
 mkdir -p \
 	$MEDIAWIKI_PATH \
 	/config/{log/mediawiki,log/lua,nginx,php} \
-#	/run/s6/services/parsoid \
 	/assets/resources
 
 # copy mediawiki files
