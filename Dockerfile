@@ -21,39 +21,39 @@ COPY root/ /
 # build image - start
 RUN \
 	echo "**** install build packages ****" && \
-		apk add --no-cache --upgrade --virtual=build-dependencies \
-		curl \
-		gnupg \
-		tar && \
+	apk add --no-cache --upgrade --virtual=build-dependencies \
+	curl \
+	gnupg \
+	tar && \
 	echo "**** install runtime packages ****" && \
-		apk add --no-cache --upgrade \
-		php7-xmlreader \
-		php7-dom \
-		php7-intl \
-		php7-ctype \
-		php7-iconv \
-		php7-mysqli \
-		php7-pgsql \
-		php7-pdo \
-		php7-pdo_sqlite \
-		php7-json \
-		php7-pecl-apcu \
-		php7-tokenizer \
-		composer \
-		diffutils \
-		ffmpeg \
-		imagemagick \
-		poppler-utils \
-		nodejs \
-		nodejs-npm \
-		python3 \
-		lua \
-		lua 5.1\
-		make && \
+	apk add --no-cache --upgrade \
+	php7-xmlreader \
+	php7-dom \
+	php7-intl \
+	php7-ctype \
+	php7-iconv \
+	php7-mysqli \
+	php7-pgsql \
+	php7-pdo \
+	php7-pdo_sqlite \
+	php7-json \
+	php7-pecl-apcu \
+	php7-tokenizer \
+	composer \
+	diffutils \
+	ffmpeg \
+	imagemagick \
+	poppler-utils \
+	nodejs \
+	nodejs-npm \
+	python3 \
+	lua \
+	lua 5.1 \
+	make && \
 	echo "**** make php7-fpm unix socket path ****" && \
-		mkdir -p /var/run/php7-fpm/ && \
-		chown abc:abc /var/run/php7-fpm/ && \
-# parsoid setup - Parsoid setup has been phased out since mediawiki 1.35
+	mkdir -p /var/run/php7-fpm/ && \
+	chown abc:abc /var/run/php7-fpm/ && \
+	# parsoid setup - Parsoid setup has been phased out since mediawiki 1.35
 	# echo "**** install parsoid ****" && \
 	# 	set -x && \
 	# 	adduser -D -u 1010 -s /bin/bash $PARSOID_USER && \
@@ -66,125 +66,125 @@ RUN \
 	# 		$PARSOID_HOME && \
 	# 	cd $PARSOID_HOME && \
 	# 	npm install && \   
-# mediawiki core, includes bundled extentions
+	# mediawiki core, includes bundled extentions
 	echo "**** download mediawiki ****" && \
-		 mkdir -p $MEDIAWIKI_STORAGE_PATH && \
-			git clone \
-				--branch ${MEDIAWIKI_BRANCH} \
-				--single-branch \
-				--depth 1 \
-				https://gerrit.wikimedia.org/r/mediawiki/core.git \
-				$MEDIAWIKI_STORAGE_PATH && \
-			cd $MEDIAWIKI_STORAGE_PATH && \
-			git clone \
-				https://gerrit.wikimedia.org/r/mediawiki/vendor.git && \
-			git submodule update --init && \
-			rm -rf .git* && \
-# mediawiki additional extensions
+	mkdir -p $MEDIAWIKI_STORAGE_PATH && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/core.git \
+	$MEDIAWIKI_STORAGE_PATH && \
+	cd $MEDIAWIKI_STORAGE_PATH && \
+	git clone \
+	https://gerrit.wikimedia.org/r/mediawiki/vendor.git && \
+	git submodule update --init && \
+	rm -rf .git* && \
+	# mediawiki additional extensions
 	echo "**** download mediawiki extensions ****" && \
 	echo "**** download Maintenance extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/Maintenance && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/Maintenance \
-			$MEDIAWIKI_STORAGE_PATH/extensions/Maintenance && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/Maintenance/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/Maintenance && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/Maintenance \
+	$MEDIAWIKI_STORAGE_PATH/extensions/Maintenance && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/Maintenance/.git* && \
 	echo "**** download UploadWizard extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/UploadWizard \
-			$MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/UploadWizard \
+	$MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/UploadWizard/.git* && \
 	echo "**** download VisualEditor extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor \
-			$MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
-		cd $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
-		git submodule update --init && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor \
+	$MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
+	cd $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
+	git submodule update --init && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor/.git* && \
 	echo "**** download UserMerge extensions ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge \
-			$MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge \
+	$MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge/.git* && \
 	echo "**** download TemplateData extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateData && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData \
-			$MEDIAWIKI_STORAGE_PATH/extensions/TemplateData && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateData/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateData && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData \
+	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateData && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateData/.git* && \
 	echo "**** download TemplateStyles extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
-			git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateStyles \
-			$MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles/.git* && \
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateStyles \
+	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles/.git* && \
 	echo "**** download TemplateWizard extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
-			git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard \
-			$MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard/.git* && \
-# remove block in future - start
-# remove these extensions after MEDIAWIKI_VERSION_MINOR changes to 34
-# these extentions will be included with mediawiki core
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard \
+	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard/.git* && \
+	# remove block in future - start
+	# remove these extensions after MEDIAWIKI_VERSION_MINOR changes to 34
+	# these extentions will be included with mediawiki core
 	echo "**** download Scribunto extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto \
-			$MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto/.git* && \		
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto \
+	$MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto/.git* && \		
 	echo "**** download PageImages extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages \
-			$MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/PageImages/.git* && \		
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages \
+	$MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/PageImages/.git* && \		
 	echo "**** download TextExtracts extension ****" && \
-		mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
-		git clone \
-			--branch ${MEDIAWIKI_BRANCH} \
-			--single-branch \
-			--depth 1 \
-			https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts \
-			$MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
-		rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts/.git* && \
-# remove block in future - end		
-		chown -R abc:abc $MEDIAWIKI_STORAGE_PATH && \
-# cleanup
+	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
+	git clone \
+	--branch ${MEDIAWIKI_BRANCH} \
+	--single-branch \
+	--depth 1 \
+	https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts \
+	$MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
+	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts/.git* && \
+	# remove block in future - end		
+	chown -R abc:abc $MEDIAWIKI_STORAGE_PATH && \
+	# cleanup
 	echo "**** cleanup ****" && \
-		apk del --purge \
-			build-dependencies && \
-		rm -rf \
-			/tmp/*
+	apk del --purge \
+	build-dependencies && \
+	rm -rf \
+	/tmp/*
 # build image - end
 # ports and volumes
 EXPOSE 80
