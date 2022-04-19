@@ -105,17 +105,6 @@ RUN \
 	--branch ${MEDIAWIKI_BRANCH} \
 	--single-branch \
 	--depth 1 \
-	https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor \
-	$MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
-	cd $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor && \
-	git submodule update --init && \
-	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/VisualEditor/.git* && \
-	echo "**** download UserMerge extensions ****" && \
-	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
-	git clone \
-	--branch ${MEDIAWIKI_BRANCH} \
-	--single-branch \
-	--depth 1 \
 	https://gerrit.wikimedia.org/r/mediawiki/extensions/UserMerge \
 	$MEDIAWIKI_STORAGE_PATH/extensions/UserMerge && \
 	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/UserMerge/.git* && \
