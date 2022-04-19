@@ -48,7 +48,6 @@ RUN \
 	nodejs-npm \
 	python3 \
 	lua \
-	lua-5.1 \
 	make && \
 	echo "**** make php7-fpm unix socket path ****" && \
 	mkdir -p /var/run/php7-fpm/ && \
