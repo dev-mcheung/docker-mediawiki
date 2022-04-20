@@ -13,24 +13,6 @@ if [ ! -e $MEDIAWIKI_PATH/index.php ]
 		cp -r $MEDIAWIKI_STORAGE_PATH/. $MEDIAWIKI_PATH
 fi
 
-# include extra mediawiki settings
-if [ -e $MEDIAWIKI_PATH/LocalSettings.php ] && [ ! -e $MEDIAWIKI_PATH/LocalSettings_Extras.php ]
-	then
-		echo 'adding extra settings'
-		cp /defaults/mediawiki/LocalSettings_Extras.php $MEDIAWIKI_PATH/LocalSettings_Extras.php
-		sed -i "$ a # Load extra settings" $MEDIAWIKI_PATH/LocalSettings.php
-		sed -i "$ a require 'LocalSettings_Extras.php';" $MEDIAWIKI_PATH/LocalSettings.php
-fi
-
-# include extension mediawiki settings
-if [ -e $MEDIAWIKI_PATH/LocalSettings.php ] && [ ! -e $MEDIAWIKI_PATH/LocalSettings_Extensions.php ]
-	then
-		echo 'adding extension settings'
-		cp /defaults/mediawiki/LocalSettings_Extensions.php $MEDIAWIKI_PATH/LocalSettings_Extensions.php
-		sed -i "$ a # Load extension settings" $MEDIAWIKI_PATH/LocalSettings.php
-		sed -i "$ a require 'LocalSettings_Extensions.php';" $MEDIAWIKI_PATH/LocalSettings.php
-fi
-
 # copy config files
 echo 'copying config files...'
 # nginx
