@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>mediawiki</Name>
-  <Repository>d8sychain/mediawiki</Repository>
-  <Registry>https://hub.docker.com/r/d8sychain/mediawiki/</Registry>
+  <Repository>devmcheung/mediawiki</Repository>
+  <Registry>https://hub.docker.com/r/devmcheung/mediawiki/</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
@@ -12,8 +12,8 @@
   <Overview>MediaWiki with WYSIWYG VisualEditor extension and Parsoid service. Built with Alpine, S6-overlay, NGINX, PHP-FPM with PHP 7.3, NodeJS, along with other extensions.</Overview>
   <Category>Cloud: Productivity: Tools: Network:Web Status:Beta</Category>
   <WebUI>http://[IP]:[PORT:9090]</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/d8sychain/docker-mediawiki/master/template/mediawiki.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/d8sychain/docker-mediawiki/master/assets/mediawiki-icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/devmcheung/docker-mediawiki/master/template/mediawiki.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/devmcheung/docker-mediawiki/master/assets/mediawiki-icon.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>

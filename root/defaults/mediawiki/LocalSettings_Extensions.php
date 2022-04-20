@@ -77,7 +77,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 ## Scribunto https://www.mediawiki.org/wiki/Extension:Scribunto
 	#wfLoadExtension( 'Scribunto' );
-	$wgScribuntoDefaultEngine = 'luastandalone';
 	$wgScribuntoEngineConf['luastandalone']['errorFile'] = '/config/log/lua/lua.log';
 	$wgScribuntoEngineConf['luastandalone']['luaPath'] = '/usr/bin/lua';
 
