@@ -1,4 +1,4 @@
-FROM lsiobase/nginx:3.10
+FROM lsiobase/nginx:3.13
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -39,32 +39,20 @@ RUN \
 	php7-json \
 	php7-pecl-apcu \
 	php7-tokenizer \
+	php7-mbstring \
 	composer \
 	diffutils \
 	ffmpeg \
 	imagemagick \
 	poppler-utils \
 	nodejs \
-	nodejs-npm \
+	npm \
 	python3 \
 	lua \
 	make && \
 	echo "**** make php7-fpm unix socket path ****" && \
 	mkdir -p /var/run/php7-fpm/ && \
 	chown abc:abc /var/run/php7-fpm/ && \
-	# parsoid setup - Parsoid setup has been phased out since mediawiki 1.35
-	# echo "**** install parsoid ****" && \
-	# 	set -x && \
-	# 	adduser -D -u 1010 -s /bin/bash $PARSOID_USER && \
-	# 	mkdir -p $PARSOID_HOME && \
-	# 	git clone \
-	# 		--branch ${PARSOID_VERSION} \
-	# 		--single-branch \
-	# 		--depth 1 \
-	# 		https://gerrit.wikimedia.org/r/mediawiki/services/parsoid \
-	# 		$PARSOID_HOME && \
-	# 	cd $PARSOID_HOME && \
-	# 	npm install && \   
 	# mediawiki core, includes bundled extentions
 	echo "**** download mediawiki ****" && \
 	mkdir -p $MEDIAWIKI_STORAGE_PATH && \
@@ -114,15 +102,6 @@ RUN \
 	--branch ${MEDIAWIKI_BRANCH} \
 	--single-branch \
 	--depth 1 \
-	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData \
-	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateData && \
-	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateData/.git* && \
-	echo "**** download TemplateStyles extension ****" && \
-	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
-	git clone \
-	--branch ${MEDIAWIKI_BRANCH} \
-	--single-branch \
-	--depth 1 \
 	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateStyles \
 	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles && \
 	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateStyles/.git* && \
@@ -135,36 +114,6 @@ RUN \
 	https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard \
 	$MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard && \
 	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TemplateWizard/.git* && \
-	# remove block in future - start
-	# remove these extensions after MEDIAWIKI_VERSION_MINOR changes to 34
-	# these extentions will be included with mediawiki core
-	echo "**** download Scribunto extension ****" && \
-	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
-	git clone \
-	--branch ${MEDIAWIKI_BRANCH} \
-	--single-branch \
-	--depth 1 \
-	https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto \
-	$MEDIAWIKI_STORAGE_PATH/extensions/Scribunto && \
-	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/Scribunto/.git* && \		
-	echo "**** download PageImages extension ****" && \
-	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
-	git clone \
-	--branch ${MEDIAWIKI_BRANCH} \
-	--single-branch \
-	--depth 1 \
-	https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages \
-	$MEDIAWIKI_STORAGE_PATH/extensions/PageImages && \
-	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/PageImages/.git* && \		
-	echo "**** download TextExtracts extension ****" && \
-	mkdir -p $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
-	git clone \
-	--branch ${MEDIAWIKI_BRANCH} \
-	--single-branch \
-	--depth 1 \
-	https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts \
-	$MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts && \
-	rm -rf $MEDIAWIKI_STORAGE_PATH/extensions/TextExtracts/.git* && \
 	# remove block in future - end		
 	chown -R abc:abc $MEDIAWIKI_STORAGE_PATH && \
 	# cleanup
