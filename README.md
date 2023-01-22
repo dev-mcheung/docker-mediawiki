@@ -1,6 +1,8 @@
 README
+
 # Important
-This has been forked from d8sychain (https://github.com/d8sychain/docker-mediawiki) for testing purposes. Please do not use this repo as it can issues.
+
+This has been forked from d8sychain (https://github.com/d8sychain/docker-mediawiki) for testing purposes. Use this repo at your own risk as it can contain unexpected bugs.
 
 # Docker MediaWiki
 
@@ -10,7 +12,7 @@ This has been forked from d8sychain (https://github.com/d8sychain/docker-mediawi
 
 Status: Beta
 
-*I am considering this docker as beta for the time being. MediaWiki itself is fully functional and able to be used in a production environment, however, I have not tested / used all the extensions that are included with the core MediaWiki repository, meaning, some of the extensions may require additional libraries and/or additional configurations to function. See the documentation for a particular extension.*
+_I am considering this docker as beta for the time being. MediaWiki itself is fully functional and able to be used in a production environment, however, I have not tested / used all the extensions that are included with the core MediaWiki repository, meaning, some of the extensions may require additional libraries and/or additional configurations to function. See the documentation for a particular extension._
 
 Docker container for [MediaWiki](https://www.mediawiki.org) running under [Nginx](https://www.nginx.com) and [PHP-FPM](https://php-fpm.org/) with [Parsoid](https://www.mediawiki.org/wiki/Parsoid) service.
 
@@ -24,57 +26,55 @@ For a basic understanding of docker please refer to the official [documentation]
 
 The main focus of this docker was to build it in a way that makes it more convenient for [UnRaid](https://unraid.net/) users vs other dockers that are available. That's not to say that it can't be used on other host systems.
 
-
-* [Supported Tags](#supported-tags)
-* [Features](#features)
-    * [Extensions](#extensions)
-* [Changelog](#changelog)
-* [Known Issues](#known-issues)
-* [Getting Started](#getting-started)
-    * [With UnRaid](#with-unraid)
-	* [With SQLite](#with-sqlite)
-	* [With MySQL](#with-mysql)
-	* [With MariaDB](#with-mariadb)
-	* [With PostgreSQL](#with-postgresql)
-* [HTTPS](#https)
-* [Configuration](#configuration)
-    * [Configuration files](#configuration-files)
-	* [General](#general)
-    * [Uploads](#uploads)
-    * [Email](#email)
-    * [Logo](#logo)
-    * [Favicon](#favicon)
-    * [Skins](#skins)
-	* [Default User Options](default-user-options)
-    * [Additional Extensions](#additional-extensions)
-		* [Additional Instructions](#additional-instructions)
-    * [Performance](#performance)
-* [Managing Extensions With ExtensionManager](#managing-extensions-with-extensionmanager)
-	* [Using ExtensionManager](using-extensionmanager)
-	* [Adding An Extension](adding-an-extension)
-	* [Removing An Extension](removing-an-extension)
-	* [Updating The Database](updating-the-database)
-	* [Upgrading An Extension](upgrading-an-extension)
-* [Upgrading](#upgrading)
-* [Contributing](#contributing)
-* [Goals](#goals)
-* [License](#license)
-
+- [Supported Tags](#supported-tags)
+- [Features](#features)
+  - [Extensions](#extensions)
+- [Changelog](#changelog)
+- [Known Issues](#known-issues)
+- [Getting Started](#getting-started)
+  - [With UnRaid](#with-unraid)
+  - [With SQLite](#with-sqlite)
+  - [With MySQL](#with-mysql)
+  - [With MariaDB](#with-mariadb)
+  - [With PostgreSQL](#with-postgresql)
+- [HTTPS](#https)
+- [Configuration](#configuration)
+  - [Configuration files](#configuration-files)
+  - [General](#general)
+    - [Uploads](#uploads)
+    - [Email](#email)
+    - [Logo](#logo)
+    - [Favicon](#favicon)
+    - [Skins](#skins)
+  - [Default User Options](default-user-options)
+    - [Additional Extensions](#additional-extensions)
+    - [Additional Instructions](#additional-instructions)
+    - [Performance](#performance)
+- [Managing Extensions With ExtensionManager](#managing-extensions-with-extensionmanager)
+  - [Using ExtensionManager](using-extensionmanager)
+  - [Adding An Extension](adding-an-extension)
+  - [Removing An Extension](removing-an-extension)
+  - [Updating The Database](updating-the-database)
+  - [Upgrading An Extension](upgrading-an-extension)
+- [Upgrading](#upgrading)
+- [Contributing](#contributing)
+- [Goals](#goals)
+- [License](#license)
 
 ## Supported Tags
 
 - `latest` Latest push to [(Master Branch)](https://github.com/d8sychain/docker-mediawiki/tree/master)
 - `1.33` Latest push to [(1.33 Branch)](https://github.com/d8sychain/docker-mediawiki/tree/1.33)
-- `1.34` Latest push to [(1.34 Branch)](https://github.com/d8sychain/docker-mediawiki/tree/1.34) *Expected late Dec '19*
+- `1.34` Latest push to [(1.34 Branch)](https://github.com/d8sychain/docker-mediawiki/tree/1.34) _Expected late Dec '19_
 - `vX.Y.Z-dbN` [Build Releases](https://github.com/d8sychain/docker-mediawiki/releases)
 
 ## Features
 
-- [MediaWiki](https://www.mediawiki.org) v1.33.2  *(v1.34.0 expected Late Dec '19)*
+- [MediaWiki](https://www.mediawiki.org) v1.33.2 _(v1.34.0 expected Late Dec '19)_
 - [Nginx](https://www.nginx.com) 1.16.1
 - [PHP-FPM](https://www.php.net/manual/en/book.fpm.php) with [PHP](https://www.mediawiki.org/wiki/Compatibility#PHP) 7.3.11
 - [Parsoid](https://www.mediawiki.org/wiki/Parsoid) running on [NodeJS](https://nodejs.org) 10.16.3
-- [APCu](https://www.php.net/manual/en/book.apcu.php) PHP caching [*see MediaWiki Perfomance Tuning*](https://www.mediawiki.org/wiki/Manual:Performance_tuning#Object_caching)
+- [APCu](https://www.php.net/manual/en/book.apcu.php) PHP caching [_see MediaWiki Perfomance Tuning_](https://www.mediawiki.org/wiki/Manual:Performance_tuning#Object_caching)
 - [International Components for Unicode](http://site.icu-project.org/) 64.2 for Unicode normalization
 - [Lua](http://www.lua.org) 5.1.x
 - [ImageMagick](https://imagemagick.org/) for thumbnail generation
@@ -85,67 +85,71 @@ The main focus of this docker was to build it in a way that makes it more conven
 - For a complete list of installed packages and thier version see /path/to/store/log/packages.list
 
 ### Extensions
+
 MediaWiki comes with a number of extensions bundled in by default since version 1.18.
 Some extentions are additional extensions that were added to this docker.
 Three additional extensions that were added will be bundled in by default in MediaWiki 1.34+
 
 #### Special Pages
-- [CiteThisPage](https://www.mediawiki.org/wiki/Extension:CiteThisPage)  (1.21+)
+
+- [CiteThisPage](https://www.mediawiki.org/wiki/Extension:CiteThisPage) (1.21+)
 - [Interwiki](https://www.mediawiki.org/wiki/Extension:Interwiki) (1.21+)
-- [Maintenance](https://www.mediawiki.org/wiki/Extension:Maintenance)  (Additional Extension)
-- [Nuke](https://www.mediawiki.org/wiki/Extension:Nuke)  (1.18+)
-- [Renameuser](https://www.mediawiki.org/wiki/Extension:Renameuser)  (1.18+)
-- [Replace Text](https://www.mediawiki.org/wiki/Extension:Replace_Text)  (1.31+)
-- [UserMerge](https://www.mediawiki.org/wiki/Extension:UserMerge)  (Additional Extension)
+- [Maintenance](https://www.mediawiki.org/wiki/Extension:Maintenance) (Additional Extension)
+- [Nuke](https://www.mediawiki.org/wiki/Extension:Nuke) (1.18+)
+- [Renameuser](https://www.mediawiki.org/wiki/Extension:Renameuser) (1.18+)
+- [Replace Text](https://www.mediawiki.org/wiki/Extension:Replace_Text) (1.31+)
+- [UserMerge](https://www.mediawiki.org/wiki/Extension:UserMerge) (Additional Extension)
 
 #### Editors
-- [CodeEditor](https://www.mediawiki.org/wiki/Extension:CodeEditor)  (1.31+)
-- [WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor)  (1.18+)
-- [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor)  (Additional Extension)
+
+- [CodeEditor](https://www.mediawiki.org/wiki/Extension:CodeEditor) (1.31+)
+- [WikiEditor](https://www.mediawiki.org/wiki/Extension:WikiEditor) (1.18+)
+- [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor) (Additional Extension)
 
 #### Parser Hooks
-- [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree)  (1.31+)
-- [Cite](https://www.mediawiki.org/wiki/Extension:Cite)  (1.21+)
-- [ImageMap](https://www.mediawiki.org/wiki/Extension:ImageMap)  (1.21+)
-- [InputBox](https://www.mediawiki.org/wiki/Extension:InputBox)  (1.21+)
-- [ParserFunctions](https://www.mediawiki.org/wiki/Extension:ParserFunctions)  (1.18+)
-- [Poem](https://www.mediawiki.org/wiki/Extension:Poem)  (1.21+)
-- [Scribunto](https://www.mediawiki.org/wiki/Extension:Scribunto)  (additional extension will be bundled in future release MW 1.34+)
-- [SyntaxHighlight](https://www.mediawiki.org/wiki/Extension:SyntaxHighlight)  (1.21+)
-- [TemplateData](https://www.mediawiki.org/wiki/Extension:TemplateData)  (Additional Extension)
-- [TemplateStyles](https://www.mediawiki.org/wiki/Extension:TemplateStyles)  (Additional Extension)
+
+- [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree) (1.31+)
+- [Cite](https://www.mediawiki.org/wiki/Extension:Cite) (1.21+)
+- [ImageMap](https://www.mediawiki.org/wiki/Extension:ImageMap) (1.21+)
+- [InputBox](https://www.mediawiki.org/wiki/Extension:InputBox) (1.21+)
+- [ParserFunctions](https://www.mediawiki.org/wiki/Extension:ParserFunctions) (1.18+)
+- [Poem](https://www.mediawiki.org/wiki/Extension:Poem) (1.21+)
+- [Scribunto](https://www.mediawiki.org/wiki/Extension:Scribunto) (additional extension will be bundled in future release MW 1.34+)
+- [SyntaxHighlight](https://www.mediawiki.org/wiki/Extension:SyntaxHighlight) (1.21+)
+- [TemplateData](https://www.mediawiki.org/wiki/Extension:TemplateData) (Additional Extension)
+- [TemplateStyles](https://www.mediawiki.org/wiki/Extension:TemplateStyles) (Additional Extension)
 
 #### Media Handlers
-- [PdfHandler](https://www.mediawiki.org/wiki/Extension:PdfHandler)  (1.21+)
 
+- [PdfHandler](https://www.mediawiki.org/wiki/Extension:PdfHandler) (1.21+)
 
 #### Spam Prevention
-- [ConfirmEdit](https://www.mediawiki.org/wiki/Extension:ConfirmEdit)  (1.18+)
-- [SpamBlacklist](https://www.mediawiki.org/wiki/Extension:SpamBlacklist)  (1.21+)
-- [TitleBlacklist](https://www.mediawiki.org/wiki/Extension:TitleBlacklist)  (1.21+)
+
+- [ConfirmEdit](https://www.mediawiki.org/wiki/Extension:ConfirmEdit) (1.18+)
+- [SpamBlacklist](https://www.mediawiki.org/wiki/Extension:SpamBlacklist) (1.21+)
+- [TitleBlacklist](https://www.mediawiki.org/wiki/Extension:TitleBlacklist) (1.21+)
 
 #### API
-- [PageImages](https://www.mediawiki.org/wiki/Extension:PageImages)  (additional extension will be bundled in future release MW 1.34+)
+
+- [PageImages](https://www.mediawiki.org/wiki/Extension:PageImages) (additional extension will be bundled in future release MW 1.34+)
 
 #### Other
-- [Gadgets](https://www.mediawiki.org/wiki/Extension:Gadgets)  (1.18+)
-- [LocalisationUpdate](https://www.mediawiki.org/wiki/Extension:LocalisationUpdate)  (1.21+)
-- [MultimediaViewer](https://www.mediawiki.org/wiki/Extension:MultimediaViewer)  (1.31+)
-- [OATHAuth](https://www.mediawiki.org/wiki/Extension:OATHAuth)  (1.31+)
-- [TemplateWizard](https://www.mediawiki.org/wiki/Extension:TemplateWizard)  (Additional Extension)
-- [TextExtracts](https://www.mediawiki.org/wiki/Extension:TextExtracts)  (additional extension will be bundled in future release MW 1.34+)
-- [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard)  (Additional Extension)
 
+- [Gadgets](https://www.mediawiki.org/wiki/Extension:Gadgets) (1.18+)
+- [LocalisationUpdate](https://www.mediawiki.org/wiki/Extension:LocalisationUpdate) (1.21+)
+- [MultimediaViewer](https://www.mediawiki.org/wiki/Extension:MultimediaViewer) (1.31+)
+- [OATHAuth](https://www.mediawiki.org/wiki/Extension:OATHAuth) (1.31+)
+- [TemplateWizard](https://www.mediawiki.org/wiki/Extension:TemplateWizard) (Additional Extension)
+- [TextExtracts](https://www.mediawiki.org/wiki/Extension:TextExtracts) (additional extension will be bundled in future release MW 1.34+)
+- [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard) (Additional Extension)
 
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/d8sychain/docker-mediawiki/blob/master/docs/CHANGELOG.md) for information about the latest changes.
 
-
 ## Known Issues
 
 See [KNOWNISSUES.md](https://github.com/d8sychain/docker-mediawiki/blob/master/docs/KNOWNISSUES.md) for information about current issues.
-
 
 ## Getting Started
 
@@ -253,18 +257,15 @@ docker run --name=mediawiki_wiki \
 -d d8sychain/mediawiki
 ```
 
-
 You should be able to browse your wiki at [http://localhost:9090](http://localhost:9090) or `http://*server-ip*:9090`
-
 
 ## HTTPS
 
-HTTPS is not configured within the container. Its recommended to use a nginx reverse proxy container for HTTPS setups. 
+HTTPS is not configured within the container. Its recommended to use a nginx reverse proxy container for HTTPS setups.
 
 Recommend using Linuxserver.io Let's Encrypt [docker](https://hub.docker.com/r/linuxserver/letsencrypt). It has a built-in [Let's Encrypt](https://letsencrypt.org/) client that automates free SSL server certificate generation and renewal processes. It also contains fail2ban for intrusion prevention.
 
 If you don't want to use a reverse proxy you can add your own cert and key to `/config/keys` and add the necessary configurations to `/config/nginx/nginx.conf`
-
 
 ## Configuration
 
@@ -276,8 +277,8 @@ If any of these files, except for **LocalSettings.php**, becomes mis-configured 
 
 Note: When upgrading build versions, changes to configuration files will not override your current files.
 
-* If you want the newest version of a config file, delete or rename your old file first.
-* Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
+- If you want the newest version of a config file, delete or rename your old file first.
+- Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
 
 **LocalSettings.php** is created/generated by the MediaWiki installer.
 
@@ -291,12 +292,12 @@ Note: When upgrading build versions, changes to configuration files will not ove
 
 ### General
 
-* Use the MediaWiki installer to generate **LocalSettings.php** and save it to `/config/www/mediawiki`
-* Restart the MediaWiki container `docker restart container_name` or for UnRaid use the UI to restart the container
-* Make any customizations in **LocalSettings_Extras.php** and **LocalSettings_Extensions.php** These will be added after **LocalSettings.php** is saved to `/config/www/mediawiki` and the container is restarted.
-* You may need to refresh the page and cache `Ctrl-F5` in your browser for the additional MediaWiki configurations to show
-* There are several configurations in **LocalSettings_Extras.php** and **LocalSettings_Extensions.php** that are already defined but commented out
-* Uncomment and modify them as needed and/or add your own
+- Use the MediaWiki installer to generate **LocalSettings.php** and save it to `/config/www/mediawiki`
+- Restart the MediaWiki container `docker restart container_name` or for UnRaid use the UI to restart the container
+- Make any customizations in **LocalSettings_Extras.php** and **LocalSettings_Extensions.php** These will be added after **LocalSettings.php** is saved to `/config/www/mediawiki` and the container is restarted.
+- You may need to refresh the page and cache `Ctrl-F5` in your browser for the additional MediaWiki configurations to show
+- There are several configurations in **LocalSettings_Extras.php** and **LocalSettings_Extensions.php** that are already defined but commented out
+- Uncomment and modify them as needed and/or add your own
 
 ### Uploads
 
@@ -343,22 +344,21 @@ $wgSMTP = [
 ];
 ```
 
-
 ### Logo
 
 You can setup your own logo by placing an image named **wiki.png** in `/config/www/mediawiki/resources/assets/wiki.png` or by placing a file within `/config/www/mediawiki` or in `/assets` (if using the optional docker volume for storing uploads) and changing [\$wgLogo](https://www.mediawiki.org/wiki/Manual:$wgLogo) in **LocalSettings.php** to this file
 
 ### Favicon
 
-You can setup your own favicon by placing an image  **favicon.ico** in `/config/www/mediawiki/favicon.ico` or by placing a file within `/config/www/mediawiki` or in `/assets` (if using the optional docker volume for storing uploads) and changing [\$wgFavicon](https://www.mediawiki.org/wiki/Manual:$wgLogo) in **LocalSettings_Extras.php** to this file
+You can setup your own favicon by placing an image **favicon.ico** in `/config/www/mediawiki/favicon.ico` or by placing a file within `/config/www/mediawiki` or in `/assets` (if using the optional docker volume for storing uploads) and changing [\$wgFavicon](https://www.mediawiki.org/wiki/Manual:$wgLogo) in **LocalSettings_Extras.php** to this file
 
 ### Skins
 
 The default skins are packaged with MediaWiki:
 
-* monobook
-* timeless
-* vector
+- monobook
+- timeless
+- vector
 
 You can add more [skins](https://www.mediawiki.org/wiki/Manual:Skins) by downloading and adding them to `/confing/www/mediawiki/skins` and enable as per the skin's installation instructions. Add additional configurations to `/config/www/mediawiki/LocalSettings.php`
 
@@ -378,7 +378,7 @@ $wgDefaultUserOptions['timecorrection'] = '0';		// A fixed timezone offset or Zo
 
 You can add more [extensions](https://www.mediawiki.org/wiki/Manual:Skins) by downloading and adding them to `/config/www/mediawiki/extensions` and enable as per the extension's installation instructions. Add additional configurations to `/config/www/mediawiki/LocalSettings_Extensions.php`
 
-You can also use ExtensionManager *see [Managing Extensions With ExtensionManager](#adding-extensions-with-extensionmanager)*
+You can also use ExtensionManager _see [Managing Extensions With ExtensionManager](#adding-extensions-with-extensionmanager)_
 
 #### Additional Instructions
 
@@ -395,17 +395,16 @@ If you would like to contribute instructions of your own for extensions that you
 The container has some performance related configuration options. If you have more advanced needs you can override the configurations by editing configuration files. If you accidently break one of the configuration files, just delete it and restart the container and it will automatically be replaced with the default.
 
 - NGINX `/config/nginx/wiki-nginx.conf`
-    - line 3 `worker_processes 4` 
+  - line 3 `worker_processes 4`
 - PHP-FPM `/config/php/php-fmp.conf`
-    - line 23 `pm = dynamic`
-    - line 24 `pm.max_children = 75`
-    - line 25 `pm.start_servers = 1`
-    - line 26 `pm.min_spare_servers = 1`
-    - line 27 `pm.max_spare_servers = 20`
-    - line 28 `pm.max_requests = 500`
+  - line 23 `pm = dynamic`
+  - line 24 `pm.max_children = 75`
+  - line 25 `pm.start_servers = 1`
+  - line 26 `pm.min_spare_servers = 1`
+  - line 27 `pm.max_spare_servers = 20`
+  - line 28 `pm.max_requests = 500`
 - Parsoid `/config/parsoid/config.yaml`
-    - line 2 `num_workers: 4`
-	
+  - line 2 `num_workers: 4`
 
 ## Managing Extensions With ExtensionManager
 
@@ -424,6 +423,7 @@ Edit file `/config/ExtensionManager/MANAGER`, add the operator **+**, **\***, or
 You can add and remove as many extensions as you want, at once, in any combination.
 
 For example:
+
 ```
 +ContactPage
 -AddMessages
@@ -436,7 +436,7 @@ The extension's name must be typed out exactly as it is named.
 
 Then restart the container.
 
-Or use `docker exec -it mediawiki_wiki /config/ExtensionManager/run` (*change mediawiki_wiki to the name of your container*)
+Or use `docker exec -it mediawiki_wiki /config/ExtensionManager/run` (_change mediawiki_wiki to the name of your container_)
 
 Once an extension has been added it may require updating the database to add additional tables and/or additional configurations per the extension's documentation.
 
@@ -453,6 +453,7 @@ If the extension uses `wfLoadExtension( 'ExtensionName' );` to load it, use `+` 
 If the extension uses `require_once "$IP/extensions/ExtensionName/ExtensionName.php";` to load it, use `*` and the extension's name. (older)
 
 For example:
+
 ```
 +ContactPage
 +AddMessages
@@ -465,6 +466,7 @@ For example:
 Use `-` and the extension's name.
 
 For example:
+
 ```
 -ContactPage
 -AddMessages
@@ -479,6 +481,7 @@ Some extensions require the database schema to be updated. Most extensions that 
 Use `updatedb` to run the MediaWiki **update.php** script.
 
 For example:
+
 ```
 *ConfirmAccount
 updatedb
@@ -507,23 +510,23 @@ Use `-` and the extension's name then
 Use `+` or `*` and the extension's name.
 
 For example:
+
 ```
 -ContactPage
 +ContactPage
 ```
 
-
 ## Upgrading
 
-It is highly recommended that you **maintain a backup of your database** before enabling upgrading. (*you should maintain a backup of your database anyways*)
+It is highly recommended that you **maintain a backup of your database** before enabling upgrading. (_you should maintain a backup of your database anyways_)
 
 If using SQLite with MediaWiki the database will be backed up along with MediaWiki if using the default database directory.
 
 If using tag `latest`, it will have the newest packages installed. See `/config/log/package.list` for a list of installed packages and their versions.
 
-As MediaWiki continues to develop, newer versions of this docker image will be released. 
+As MediaWiki continues to develop, newer versions of this docker image will be released.
 
-A newer docker image may contain a newer version of MediaWiki and the image will automatically backup MediaWiki, upgrade it and the database, if environment variable **UPGRADE_MEDIAWIKI** is set to **enable**. 
+A newer docker image may contain a newer version of MediaWiki and the image will automatically backup MediaWiki, upgrade it and the database, if environment variable **UPGRADE_MEDIAWIKI** is set to **enable**.
 
 The default is set to **disable**.
 
@@ -533,9 +536,8 @@ Or if your using UnRaid edit the template.
 
 Note: When upgrading build versions, changes to configuration files will not override your current files.
 
-* If you want the newest version of a config file, delete or rename your old file first.
-* Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
-
+- If you want the newest version of a config file, delete or rename your old file first.
+- Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
 
 ## Contributing
 
@@ -543,11 +545,9 @@ See [CONTRIBUTING.md](https://github.com/d8sychain/docker-mediawiki/blob/master/
 
 See [CONTRIBUTORS.md](https://github.com/d8sychain/docker-mediawiki/blob/master/docs/CONTRIBUTORS.md) for the list of contributors.
 
-
 ## Goals
 
 See [GOALS.md](https://github.com/d8sychain/docker-mediawiki/blob/master/docs/GOALS.md) for information on future for the project.
-
 
 ## License
 

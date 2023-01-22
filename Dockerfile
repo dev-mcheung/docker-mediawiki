@@ -1,4 +1,4 @@
-FROM lsiobase/nginx:3.13
+FROM lsiobase/nginx:3.15
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -7,8 +7,8 @@ LABEL maintainer="devmcheung"
 # environment settings
 ENV APK_UPGRADE=false
 ENV MEDIAWIKI_VERSION_MAJOR=1
-ENV MEDIAWIKI_VERSION_MINOR=37
-ENV MEDIAWIKI_VERSION_BUGFIX=2
+ENV MEDIAWIKI_VERSION_MINOR=39
+ENV MEDIAWIKI_VERSION_BUGFIX=1
 ENV MEDIAWIKI_VERSION=v$MEDIAWIKI_VERSION_MAJOR\_$MEDIAWIKI_VERSION_MINOR\_$MEDIAWIKI_VERSION_BUGFIX
 ENV MEDIAWIKI_BRANCH=REL$MEDIAWIKI_VERSION_MAJOR\_$MEDIAWIKI_VERSION_MINOR
 ENV MEDIAWIKI_STORAGE_PATH=/defaults/www/mediawiki
@@ -27,6 +27,22 @@ RUN \
 	tar && \
 	echo "**** install runtime packages ****" && \
 	apk add --no-cache --upgrade \
+	php8-xmlreader \
+	php8-dom \
+	php8-intl \
+	php8-ctype \
+	php8-iconv \
+	php8-mysqli \
+	php8-pgsql \
+	php8-pdo \
+	php8-pdo_sqlite \
+	php8-json \
+	php8-pecl-apcu \
+	php8-tokenizer \
+	php8-mbstring \
+	php7 \
+	php7-xml \
+	php7-fileinfo \
 	php7-xmlreader \
 	php7-dom \
 	php7-intl \
@@ -49,6 +65,7 @@ RUN \
 	npm \
 	python3 \
 	lua \
+	lua5.1 \
 	make && \
 	echo "**** make php7-fpm unix socket path ****" && \
 	mkdir -p /var/run/php7-fpm/ && \
