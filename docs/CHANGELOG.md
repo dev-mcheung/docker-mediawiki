@@ -6,6 +6,10 @@ CHANGELOG
   - If you want the newest version of a config file, delete or rename your old file first.
   - Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
 
+## 2023-2-7 v1.39.1
+
+- Adjusted chmod -R a=rwx $MEDIAWIKI_PATH/images
+
 ## 2023-1-21 v1.39.1
 
 - Bumping MediaWiki to v1.39.1

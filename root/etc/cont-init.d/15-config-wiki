@@ -41,10 +41,10 @@ if [ ! -d $MEDIAWIKI_PATH/extensions/TemplateStyles/vendor ]
 fi
 
 # set permissions for mediawiki default directory for file uploads
-chmod -R a=rw $MEDIAWIKI_PATH/images
+chmod -R a=rwx $MEDIAWIKI_PATH/images
 
 # set ownership and permissions for mediawiki to use docker volume /assets directory for file uploads
 chown -R abc:abc /assets
-chmod -R a=rw /assets
+chmod -R a=rwx /assets
 
 
