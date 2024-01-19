@@ -30,7 +30,7 @@ echo 'copying config files...'
 
 # set set execute permissions for mediawiki extentions
 chmod a+x $MEDIAWIKI_PATH/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize
-chmod a+x $MEDIAWIKI_PATH/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
+chmod a+x $MEDIAWIKI_PATH/extensions/Scribunto/includes/Engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
 
 # run composer for TemplateStyles if needed
 if [ ! -d $MEDIAWIKI_PATH/extensions/TemplateStyles/vendor ]
