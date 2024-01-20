@@ -6,15 +6,11 @@ CHANGELOG
     -   If you want the newest version of a config file, delete or rename your old file first.
     -   Then restart the container and the new config file will be added, then you can merge any customizations that you may have made in your original file.
 
-## 2023-01-19 v1.40.1
-
--   Bumping MediaWiki to latest stable - v1.41.0
--   Bumping lsiobase/nginx:3.15 to 3.17
--   Uses PHP 8.1
-
 ## 2023-01-19 v1.39.6 LTS
 
--   Bumping MediaWiki to v1.39.6 LTS
+-   Bumping MediaWiki LTS to v1.39.6
+-   Bumping lsiobase/nginx:3.15 to 3.17
+-   Uses PHP 8.1
 
 ## 2023-2-7 v1.39.1
 
