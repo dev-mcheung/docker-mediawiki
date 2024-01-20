@@ -1,4 +1,4 @@
-FROM lsiobase/nginx:3.15
+FROM lsiobase/nginx:3.17
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -7,8 +7,8 @@ LABEL maintainer="devmcheung"
 # environment settings
 ENV APK_UPGRADE=false
 ENV MEDIAWIKI_VERSION_MAJOR=1
-ENV MEDIAWIKI_VERSION_MINOR=39
-ENV MEDIAWIKI_VERSION_BUGFIX=6
+ENV MEDIAWIKI_VERSION_MINOR=41
+ENV MEDIAWIKI_VERSION_BUGFIX=0
 ENV MEDIAWIKI_VERSION=v$MEDIAWIKI_VERSION_MAJOR\_$MEDIAWIKI_VERSION_MINOR\_$MEDIAWIKI_VERSION_BUGFIX
 ENV MEDIAWIKI_BRANCH=REL$MEDIAWIKI_VERSION_MAJOR\_$MEDIAWIKI_VERSION_MINOR
 ENV MEDIAWIKI_STORAGE_PATH=/defaults/www/mediawiki
@@ -27,35 +27,20 @@ RUN \
 	tar && \
 	echo "**** install runtime packages ****" && \
 	apk add --no-cache --upgrade \
-	php8-xmlreader \
-	php8-dom \
-	php8-intl \
-	php8-ctype \
-	php8-iconv \
-	php8-mysqli \
-	php8-pgsql \
-	php8-pdo \
-	php8-pdo_sqlite \
-	php8-json \
-	php8-pecl-apcu \
-	php8-tokenizer \
-	php8-mbstring \
-	php7 \
-	php7-xml \
-	php7-fileinfo \
-	php7-xmlreader \
-	php7-dom \
-	php7-intl \
-	php7-ctype \
-	php7-iconv \
-	php7-mysqli \
-	php7-pgsql \
-	php7-pdo \
-	php7-pdo_sqlite \
-	php7-json \
-	php7-pecl-apcu \
-	php7-tokenizer \
-	php7-mbstring \
+	php81 \
+	php81-xmlreader \
+	php81-dom \
+	php81-intl \
+	php81-ctype \
+	php81-iconv \
+	php81-mysqli \
+	php81-pgsql \
+	php81-pdo \
+	php81-pdo_sqlite \
+	php81-json \
+	php81-pecl-apcu \
+	php81-tokenizer \
+	php81-mbstring \
 	composer \
 	diffutils \
 	ffmpeg \
@@ -67,9 +52,9 @@ RUN \
 	lua \
 	lua5.1 \
 	make && \
-	echo "**** make php7-fpm unix socket path ****" && \
-	mkdir -p /var/run/php7-fpm/ && \
-	chown abc:abc /var/run/php7-fpm/ && \
+	echo "**** make php81-fpm unix socket path ****" && \
+	mkdir -p /var/run/php81-fpm/ && \
+	chown abc:abc /var/run/php81-fpm/ && \
 	# mediawiki core, includes bundled extentions
 	echo "**** download mediawiki ****" && \
 	mkdir -p $MEDIAWIKI_STORAGE_PATH && \

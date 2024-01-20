@@ -26,7 +26,7 @@ if [ -e $MEDIAWIKI_PATH/VERSION ]
 				# upgrade mediawiki database
 				echo 'upgrading mediawiki database'
 				cd $MEDIAWIKI_PATH/maintenance
-				php8 update.php
+				php update.php
 				sed -i "s/.*/$MEDIAWIKI_VERSION/" $MEDIAWIKI_PATH/VERSION
 		fi
 	else
